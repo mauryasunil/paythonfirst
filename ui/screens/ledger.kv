@@ -1,0 +1,17 @@
+<LedgerScreen>:
+    name: "ledger"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: 20
+
+        MDTopAppBar:
+            title: "Khata / Ledger"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        ScrollView:
+            MDLabel:
+                id: ledger_output
+                text: "Ledger will appear here"
+                size_hint_y: None
+                height: self.texture_size[1]

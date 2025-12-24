@@ -1,0 +1,25 @@
+<ReportScreen>:
+    name: "reports"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Reports"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        MDList:
+            OneLineListItem:
+                text: "Stock Report"
+                on_release: app.show_stock_report()
+
+            OneLineListItem:
+                text: "Outstanding Report"
+                on_release: app.show_outstanding_report()
+
+        ScrollView:
+            MDLabel:
+                id: report_output
+                text: ""
+                size_hint_y: None
+                height: self.texture_size[1]

@@ -1,0 +1,47 @@
+#:import dp kivy.metrics.dp
+
+<SupplierScreen>:
+    name: "supplier"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(16)
+        spacing: dp(10)
+
+        MDTopAppBar:
+            title: "Supplier Master"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        MDTextField:
+            id: name
+            hint_text: "Supplier Name"
+            required: True
+
+        MDTextField:
+            id: gst_no
+            hint_text: "GST Number"
+
+        MDTextField:
+            id: phone
+            hint_text: "Mobile Number"
+            input_filter: "int"
+
+        MDTextField:
+            id: supplier_type
+            hint_text: "Supplier Type (Local / Interstate / Import)"
+
+        MDTextField:
+            id: address
+            hint_text: "Address"
+            multiline: True
+
+        MDRaisedButton:
+            text: "SAVE SUPPLIER"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.save_supplier()
+
+        ScrollView:
+            size_hint_y: 1
+
+            MDList:
+                id: supplier_list

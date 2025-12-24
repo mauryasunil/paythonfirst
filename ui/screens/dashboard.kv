@@ -1,0 +1,25 @@
+<DashboardScreen>:
+    name: "dashboard"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Mini ERP"
+
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(20)
+            spacing: dp(15)
+
+            MDRaisedButton:
+                text: "Masters"
+                on_release: app.open_masters_menu(self)
+
+            MDRaisedButton:
+                text: "Transactions"
+                on_release: app.open_transactions_menu(self)
+
+            MDRaisedButton:
+                text: "Reports"
+                on_release: app.open_reports_menu(self)

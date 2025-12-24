@@ -1,0 +1,119 @@
+<SalesScreen>:
+    name: "sales"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(8)
+        spacing: dp(6)
+
+        # ================= HEADER =================
+        MDTopAppBar:
+            title: "Sales Invoice"
+            elevation: 4
+
+        # ================= CUSTOMER DETAILS =================
+        MDGridLayout:
+            cols: 3
+            spacing: dp(6)
+            size_hint_y: None
+            height: self.minimum_height
+
+            MDTextField:
+                id: customer_name
+                hint_text: "Customer Name"
+
+            MDTextField:
+                id: mobile
+                hint_text: "Mobile No"
+                input_filter: "int"
+
+            MDTextField:
+                id: address
+                hint_text: "Address"
+
+        MDSeparator:
+
+        MDLabel:
+            text: "Item Details"
+            bold: True
+            size_hint_y: None
+            height: dp(30)
+
+        # ================= ITEMS TABLE =================
+        ScrollView:
+            do_scroll_x: False
+
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(4)
+
+                # ---------- TABLE HEADER ----------
+                MDGridLayout:
+                    cols: 9
+                    size_hint_y: None
+                    height: dp(32)
+                    spacing: dp(4)
+
+                    MDLabel:
+                        text: "Item"
+                        bold: True
+                    MDLabel:
+                        text: "HSN"
+                        bold: True
+                    MDLabel:
+                        text: "Batch"
+                        bold: True
+                    MDLabel:
+                        text: "Expiry"
+                        bold: True
+                    MDLabel:
+                        text: "Qty"
+                        bold: True
+                    MDLabel:
+                        text: "Rate"
+                        bold: True
+                    MDLabel:
+                        text: "Disc %"
+                        bold: True
+                    MDLabel:
+                        text: "GST %"
+                        bold: True
+                    MDLabel:
+                        text: "Amount"
+                        bold: True
+
+                MDSeparator:
+
+                # ---------- ITEMS ROW CONTAINER ----------
+                MDBoxLayout:
+                    id: item_table
+                    orientation: "vertical"
+                    size_hint_y: None
+                    height: self.minimum_height
+
+        # ================= ACTION BUTTONS =================
+        MDRaisedButton:
+            text: "ADD ITEM"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.add_item_row()
+
+        MDSeparator:
+
+        # ================= TOTAL & SAVE =================
+        MDGridLayout:
+            cols: 2
+            size_hint_y: None
+            height: dp(40)
+            padding: dp(6)
+
+            MDLabel:
+                id: total_lbl
+                text: "Total: ₹ 0.00"
+                bold: True
+
+            MDRaisedButton:
+                text: "SAVE & PRINT"
+                md_bg_color: 0, 0.6, 0, 1
+                on_release: root.save_invoice()

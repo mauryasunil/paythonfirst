@@ -1,0 +1,67 @@
+<ItemScreen>:
+    name: "items"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 10
+
+        MDTopAppBar:
+            title: "Item Master"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        MDGridLayout:
+            cols: 2
+            spacing: 12
+            size_hint_y: None
+            height: self.minimum_height
+
+            MDTextField:
+                id: name
+                hint_text: "Item Name(Brand)"
+            MDTextField:
+                id: nameTech
+                hint_text: "Item Technical Name"
+
+            MDTextField:
+                id: category
+                hint_text: "Category"
+
+            MDTextField:
+                id: sub_category
+                hint_text: "Sub Category"
+
+            Spinner:
+                id: gst_type
+                text: "GST"
+                values: ["0%", "5%", "12%", "18%"]
+                size_hint_y: None
+                height: "48dp"
+        MDGridLayout:
+            cols: 3
+            spacing: 10
+            size_hint_y: None
+            height: self.minimum_height
+
+            MDTextField:
+                id: Batch No
+                hint_text: "Batch No"
+            MDTextField:
+                hint_text: "mfg"
+
+            MDTextField:
+                hint_text: "Expiry"
+
+            MDTextField:
+                hint_text: "MRP"
+
+        MDRaisedButton:
+            text: "Save Item"
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                app.item_controller.save_item(
+                name.text,
+                category.text,
+                sub_category.text,
+                gst_type.text
+                )

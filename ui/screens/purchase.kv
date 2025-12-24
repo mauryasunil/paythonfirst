@@ -1,0 +1,46 @@
+<PurchaseScreen>:
+    name: "purchase"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(10)
+
+        MDTopAppBar:
+            title: "Purchase Entry"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        MDTextField:
+            id: party_id
+            hint_text: "Supplier ID"
+            input_filter: "int"
+            mode: "rectangle"
+
+        MDTextField:
+            id: item_id
+            hint_text: "Item ID"
+            input_filter: "int"
+            mode: "rectangle"
+
+        MDTextField:
+            id: qty
+            hint_text: "Quantity"
+            input_filter: "int"
+            mode: "rectangle"
+
+        MDTextField:
+            id: rate
+            hint_text: "Rate"
+            input_filter: "float"
+            mode: "rectangle"
+
+        MDRaisedButton:
+            text: "Save Purchase"
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                app.purchase_controller.save_purchase(
+                party_id.text,
+                item_id.text,
+                qty.text,
+                rate.text
+                )
