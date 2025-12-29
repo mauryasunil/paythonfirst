@@ -2,6 +2,7 @@ from kivymd.uix.screen import MDScreen
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.gridlayout import MDGridLayout
 from controllers.sales_controller import SalesController
+from models.sales_invoice import SalesInvoice
 
 
 class SalesScreen(MDScreen):
@@ -82,10 +83,14 @@ class SalesScreen(MDScreen):
     def update_total(self, total):
         self.ids.total_lbl.text = f"Total: ₹ {total:.2f}"
 
+
+    
+    
+
     # ================= SAVE INVOICE =================
     def save_invoice(self):
         header = {
-            "invoice_no": "INV-018",
+            # "invoice_no":  invoice_no,
             "customer_name": self.ids.customer_name.text,
             "customer_mobile": self.ids.mobile.text,
             "customer_address": self.ids.address.text
