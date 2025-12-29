@@ -20,12 +20,12 @@ with engine.connect() as conn:
 
 
 
-    tables = conn.execute(
-        text("SELECT * FROM sales_items ")
-    ).fetchall()
+    # tables = conn.execute(
+    #     text("SELECT * FROM sales_items ")
+    # ).fetchall()
 
-    for t in tables:
-        print(" -", t[0],t[1], t[2],t[3], t[4],t[5])
+    # for t in tables:
+    #     print(" -", t[0],t[1], t[2],t[3], t[4],t[5])
 
     # tables = conn.execute(
     #     text("SELECT * FROM sales_invoice ")
@@ -36,9 +36,9 @@ with engine.connect() as conn:
 
 
     # print("\n📌 SUPPLIERS TABLE STRUCTURE:")
-    # columns = conn.execute(
-    #    text("PRAGMA table_info(sales_items)")
-    # ).fetchall()
+    columns = conn.execute(
+       text("PRAGMA table_info(sales_items)")
+    ).fetchall()
 
-    # for col in columns:
-    #   print(f" - {col[1]} ({col[2]})")
+    for col in columns:
+      print(f" - {col[1]} ({col[2]})")

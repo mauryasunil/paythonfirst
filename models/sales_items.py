@@ -12,6 +12,7 @@ class SalesItem(Base):
     mfg = Column(String)
     exp = Column(String)
     qty = Column(Float)
+    mrp = Column(Float)
     rate = Column(Float)
     discount = Column(Float)
     gst = Column(Float)

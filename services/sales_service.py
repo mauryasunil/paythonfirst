@@ -46,7 +46,7 @@ class SalesService:
         ws.append(["Address", invoice["customer_address"]])
         ws.append([])
 
-        ws.append(["Item", "HSN", "Batch", "EXP", "Qty", "Rate", "Disc", "Amount"])
+        ws.append(["Item", "HSN", "Batch", "EXP", "Qty","mrp", "Rate", "Disc", "Amount"])
 
         for i in items:
             ws.append([
@@ -55,6 +55,7 @@ class SalesService:
                 i["batch"],
                 i["exp"],
                 i["qty"],
+                i["mrp"],
                 i["rate"],
                 i["discount"],
                 i["amount"]
