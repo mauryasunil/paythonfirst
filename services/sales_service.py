@@ -1,4 +1,7 @@
 from openpyxl import Workbook
+from reportlab.platypus import SimpleDocTemplate, Table
+from reportlab.lib.pagesizes import A4
+
 from repositories.sales_repository import SalesRepository
 
 
@@ -27,9 +30,11 @@ class SalesService:
 
         # 🔹 export after DB success
         self.export_excel(invoice, items)
+        self.export_pdf(invoice, items)
 
         return invoice
 
+    # ================= EXCEL EXPORT =================
     def export_excel(self, invoice, items):
         wb = Workbook()
         ws = wb.active
@@ -62,3 +67,31 @@ class SalesService:
 
         wb.save(f"Invoice_{invoice['invoice_no']}.xlsx")
 
+    # ================= PDF EXPORT =================
+    def export_pdf(self, invoice, items):
+        file_name = f"Invoice_{invoice['invoice_no']}.pdf"
+        doc = SimpleDocTemplate(file_name, pagesize=A4)
+
+        data = [
+            ["Invoice No", invoice["invoice_no"]],
+            ["Customer", invoice["customer_name"]],
+            ["Mobile", invoice["customer_mobile"]],
+            ["Address", invoice["customer_address"]],
+            [""],
+            ["Item", "Qty", "Rate", "Amount"]
+        ]
+
+        for i in items:
+            data.append([
+                i["item_name"],
+                i["qty"],
+                i["rate"],
+                i["amount"]
+            ])
+
+        data.append(["", "", "CGST", invoice["cgst"]])
+        data.append(["", "", "SGST", invoice["sgst"]])
+        data.append(["", "", "GRAND TOTAL", invoice["grand_total"]])
+
+        table = Table(data)
+        doc.build([table])
