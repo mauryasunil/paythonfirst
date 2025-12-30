@@ -28,6 +28,7 @@ from controllers.item_controller import ItemController
 from controllers.purchase_controller import PurchaseController
 from controllers.report_controller import ReportController
 from controllers.supplier_controller import SupplierController
+from controllers.item_master_controller import ItemController
 
 
 class ERPApp(MDApp):
