@@ -25,3 +25,16 @@ class SupplierRepository:
         data = db.query(Supplier).all()
         db.close()
         return data
+    def search_by_name(self, text):
+        return self.db.query(Supplier)\
+        .filter(Supplier.name.ilike(f"%{text}%")).all()
+    def search_suppliers(self, text):
+        db = SessionLocal()
+        result = (
+            db.query(Supplier)
+            .filter(Supplier.name.ilike(f"%{text}%"))
+            .all()
+        )
+        db.close()
+        return result
+

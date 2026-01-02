@@ -1,0 +1,35 @@
+<CustomerScreen>:
+    name: "customer"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(16)
+        spacing: dp(10)
+
+        MDTopAppBar:
+            title: "Customer Master"
+            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+
+        MDTextField:
+            id: name
+            hint_text: "Customer Name"
+            required: True
+
+        MDTextField:
+            id: mobile
+            hint_text: "Mobile Number"
+            input_filter: "int"
+
+        MDTextField:
+            id: address
+            hint_text: "Address"
+            multiline: True
+
+        MDRaisedButton:
+            text: "SAVE CUSTOMER"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.save_customer()
+
+        ScrollView:
+            MDList:
+                id: customer_list

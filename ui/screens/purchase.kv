@@ -3,44 +3,81 @@
 
     MDBoxLayout:
         orientation: "vertical"
-        padding: dp(20)
-        spacing: dp(10)
+        padding: dp(8)
+        spacing: dp(6)
 
         MDTopAppBar:
             title: "Purchase Entry"
-            left_action_items: [["menu", lambda x: app.go_dashboard()]]
+            left_action_items: [["arrow-left", lambda x: app.go_dashboard()]]
 
-        MDTextField:
-            id: party_id
-            hint_text: "Supplier ID"
-            input_filter: "int"
-            mode: "rectangle"
+        MDGridLayout:
+            cols: 3
+            spacing: dp(6)
+            size_hint_y: None
+            height: self.minimum_height
 
-        MDTextField:
-            id: item_id
-            hint_text: "Item ID"
-            input_filter: "int"
-            mode: "rectangle"
+            MDTextField:
+                id: invoice_no
+                hint_text: "Invoice No"
 
-        MDTextField:
-            id: qty
-            hint_text: "Quantity"
-            input_filter: "int"
-            mode: "rectangle"
+            MDTextField:
+                id: supplier
+                hint_text: "Supplier"
+                on_text: root.on_supplier_text(self.text)
 
-        MDTextField:
-            id: rate
-            hint_text: "Rate"
-            input_filter: "float"
-            mode: "rectangle"
+            MDTextField:
+                id: date
+                hint_text: "Date (DD-MM-YYYY)"
+
+        MDLabel:
+            text: "Items"
+            bold: True
+
+        ScrollView:
+            MDGridLayout:
+                id: item_table
+                cols: 7
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(4)
+
+        MDGridLayout:
+            cols: 7
+            size_hint_y: None
+            height: dp(30)
+
+            MDLabel: 
+                text: "Item"
+            MDLabel: 
+                text: "HSN"
+            MDLabel: 
+                text: "Batch"
+            MDLabel: 
+                text: "mfg"
+            MDLabel: 
+                text: "Expiry"
+            MDLabel: 
+                text: "Qty"
+            MDLabel: 
+                text: "Rate"
+            MDLabel: 
+                text: "GST %"
 
         MDRaisedButton:
-            text: "Save Purchase"
-            pos_hint: {"center_x": 0.5}
-            on_release:
-                app.purchase_controller.save_purchase(
-                party_id.text,
-                item_id.text,
-                qty.text,
-                rate.text
-                )
+            text: "ADD ITEM"
+            on_release: root.add_item_row()
+
+        MDSeparator:
+
+        MDGridLayout:
+            cols: 2
+            size_hint_y: None
+            height: dp(40)
+
+            MDLabel:
+                id: total_lbl
+                text: "Total: 0.00"
+
+            MDRaisedButton:
+                text: "SAVE PURCHASE"
+                on_release: root.save_purchase()

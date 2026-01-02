@@ -20,12 +20,20 @@ with engine.connect() as conn:
 
 
 
-    tables = conn.execute(
-        text("SELECT * FROM sales_items ")
-    ).fetchall()
+    # tables = conn.execute(
+    #     text("SELECT * FROM purchase_invoice ")
+    # ).fetchall()
+    # for col in tables:
+    #     print(f" - {col[0]} ({col[1]}) {col[2]}")
 
-    for t in tables:
-        print(" -", t[0],t[1], t[2],t[3], t[4],t[5])
+    tables = conn.execute(
+        text("SELECT * FROM purchase_items ")
+    ).fetchall()
+    for col in tables:
+        print(f" - {col[0]} ({col[1]}) {col[2]}")
+
+    # for t in tables:
+    #     print(" -", t[0],t[1], t[2],t[3], t[4],t[5])
 
     # tables = conn.execute(
     #     text("SELECT * FROM sales_invoice ")

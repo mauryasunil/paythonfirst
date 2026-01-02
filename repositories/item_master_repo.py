@@ -17,3 +17,11 @@ class ItemRepository:
         items = db.query(Item).all()
         db.close()
         return items
+    def search_by_name(self, text):
+        db = SessionLocal()
+        items = db.query(Item) \
+            .filter(Item.item_name.ilike(f"%{text}%")) \
+            .all()
+        db.close()
+        return items
+

@@ -21,6 +21,7 @@ from ui.screens.reports import ReportScreen
 from ui.screens.sales import SalesScreen
 from ui.screens.Ledger import LedgerScreen
 from ui.screens.supplier import SupplierScreen
+from ui.screens.customer import CustomerScreen
 
 # ================= IMPORT CORE =================
 from database import Base, engine
@@ -29,7 +30,7 @@ from controllers.purchase_controller import PurchaseController
 from controllers.report_controller import ReportController
 from controllers.supplier_controller import SupplierController
 from controllers.item_master_controller import ItemController
-
+from controllers.customer_controller import CustomerController
 
 class ERPApp(MDApp):
 
@@ -54,6 +55,7 @@ class ERPApp(MDApp):
         Builder.load_file(resource_path("ui/screens/supplier.kv"))
         Builder.load_file(resource_path("ui/screens/reports.kv"))
         Builder.load_file(resource_path("ui/screens/ledger.kv"))
+        Builder.load_file(resource_path("ui/screens/customer.kv"))
 
         # ---------- Return Root ----------
         return Builder.load_file(resource_path("ui/main.kv"))
@@ -81,6 +83,8 @@ class ERPApp(MDApp):
 
     def go_supplier(self):
         self.root.current = "supplier"
+    def go_customer(self):
+        self.root.current = "customer"
 
     # ==================================================
     # DASHBOARD MENUS
@@ -91,6 +95,7 @@ class ERPApp(MDApp):
             items=[
                 {"text": "Item Master", "on_release": lambda: self.menu_action("items")},
                 {"text": "Supplier Master", "on_release": lambda: self.menu_action("supplier")},
+                {"text": "Customer Master", "on_release": lambda: self.menu_action("customer")},
             ],
             width_mult=4,
         )
